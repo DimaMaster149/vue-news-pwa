@@ -5,3 +5,28 @@ if (workbox) {
 } else {
   console.log(`Boo! Workbox didn't load 😬`);
 }
+
+workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
+
+// workbox.routing.registerRoute(
+//   new RegExp('.+\\.css$'),
+//   new RegExp('.+\\.js$'),
+//   new RegExp('.+\\.html$'),
+//   new workbox.strategies.CacheFirst({
+//     cacheName: 'static-code'
+//   })
+// );
+
+workbox.routing.registerRoute(
+  new RegExp('.+/newsapi.org/v2/.+'),
+  new workbox.strategies.NetworkFirst({
+    cacheName: 'news-data'
+  })
+);
+
+// workbox.routing.registerRoute(
+//   /\.(?:png|jpg|jpeg|svg|gif)$/,
+//   new workbox.strategies.CacheFirst({
+//     cacheName: 'images',
+//   })
+// );

@@ -19,7 +19,7 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 
 workbox.routing.registerRoute(
   new RegExp('.+/newsapi.org/v2/.+'),
-  new workbox.strategies.NetworkFirst({
+  new workbox.strategies.StaleWhileRevalidate({
     cacheName: 'news-data'
   })
 );

@@ -20,7 +20,17 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 workbox.routing.registerRoute(
   new RegExp('.+/newsapi.org/v2/.+'),
   new workbox.strategies.StaleWhileRevalidate({
-    cacheName: 'news-data'
+    cacheName: 'news-data',
+    plugins: [
+      new workbox.expiration.Plugin({
+        // Keep at most 50 entries.
+        maxEntries: 50,
+        // Don't keep any entries for more than 30 days.
+        maxAgeSeconds: 30 * 24 * 60 * 60,
+        // Automatically cleanup if quota is exceeded.
+        purgeOnQuotaError: true,
+      }),
+    ],
   })
 );
 

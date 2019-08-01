@@ -6,6 +6,15 @@ if (workbox) {
   console.log(`Boo! Workbox didn't load 😬`);
 }
 
+let deferredPrompt;
+
+self.addEventListener('beforeinstallprompt', (e) => {
+  console.log('before install prompt')
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+  deferredPrompt.prompt();
+});
+
 workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 
 // workbox.routing.registerRoute(

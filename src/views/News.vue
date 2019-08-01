@@ -6,6 +6,13 @@
     <button class="btn" @click="loadNewSources($event)">
       Load more sources
     </button>
+    <button class="btn" @click="installPWA($event)">intall PWA</button>
+    <p v-if="$installer.choice">
+      User {{$installer.choice}} prompt.
+    </p>
+    <p v-if="$installer.hasInstalled">
+      App installed successfully.
+    </p>
     <div>
       <div class="article" v-for="(article, index) in articles" :key="index">
         <span> {{article.title}}</span>
@@ -47,6 +54,11 @@ export default {
         .then(res => {
           this.sources = res.data.sources.slice(11, 20);
         })
+    },
+    installPWA() {
+      console.log(this.$installer.canInstall, 'can install');
+      console.log(this.$installer, 'installer hey')
+      this.$installer.prompt()
     }
   }
 }

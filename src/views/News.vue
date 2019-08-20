@@ -16,7 +16,7 @@
     <div>
       <div class="article" v-for="(article, index) in articles" :key="index">
         <span> {{article.title}}</span>
-        <p>{{article.content}}</p>
+        <p class="text-left">{{article.content}}</p>
         <img class="article-image" :src="article.urlToImage" :alt="article.title">
       </div>
     </div>

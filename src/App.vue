@@ -1,16 +1,12 @@
 <template>
   <div id="app">
-    <news></news>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import News from './views/News'
 export default {
   name: 'app',
-  components: {
-    News
-  }
 }
 </script>
 
